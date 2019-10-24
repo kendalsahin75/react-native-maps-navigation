@@ -85,7 +85,7 @@ export default class ManeuverLabel extends Component {
         }
 
         return (
-            <Text style={{flexWrap: 'wrap', color: 'red'}}>
+            <Text style={{flexWrap: 'wrap', color: 'rgb(17,17,17)'}}>
                 {parts}
             </Text>
         )

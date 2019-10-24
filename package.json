@@ -1,11 +1,45 @@
 {
-  "name": "react-native-maps-navigation",
-  "version": "0.0.14",
-  "description": "A helper and component library for react-native-maps that enables navigation support",
-  "main": "index.js",
-  "repository": {
+  "_from": "github:ayberkanilatsiz/react-native-maps-navigation",
+  "_id": "react-native-maps-navigation@0.0.14",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/react-native-maps-navigation",
+  "_phantomChildren": {},
+  "_requested": {
     "type": "git",
-    "url": "https://github.com/flyandi/react-native-maps-navigation.git"
+    "raw": "react-native-maps-navigation@github:ayberkanilatsiz/react-native-maps-navigation",
+    "name": "react-native-maps-navigation",
+    "escapedName": "react-native-maps-navigation",
+    "rawSpec": "github:ayberkanilatsiz/react-native-maps-navigation",
+    "saveSpec": "github:ayberkanilatsiz/react-native-maps-navigation",
+    "fetchSpec": null,
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "github:ayberkanilatsiz/react-native-maps-navigation#425cb433ddea865722f0ab57577f16f40b392511",
+  "_spec": "react-native-maps-navigation@github:ayberkanilatsiz/react-native-maps-navigation",
+  "_where": "/Users/kendal/development/germanTaxi/taxi-mobile-driver",
+  "author": {
+    "name": "Andy Schwarz",
+    "email": "flyandi@yahoo.com",
+    "url": "http://flyandi.net"
+  },
+  "bugs": {
+    "url": "https://github.com/flyandi/react-native-maps-navigation/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "geolib": "^3.0.2",
+    "prop-types": "^15.6.2",
+    "react-native-optiongroup": "^0.0.7"
+  },
+  "deprecated": false,
+  "description": "A helper and component library for react-native-maps that enables navigation support",
+  "homepage": "https://github.com/flyandi/react-native-maps-navigation#readme",
+  "jest": {
+    "preset": "react-native"
   },
   "keywords": [
     "react",
@@ -19,34 +53,28 @@
     "android",
     "react-component"
   ],
-  "author": "Andy Schwarz <flyandi@yahoo.com> (http://flyandi.net)",
   "license": {
     "type": "MIT",
     "url": "https://github.com/flyandi/react-native-maps-navigation/blob/master/LICENSE"
   },
-  "bugs": {
-    "url": "https://github.com/flyandi/react-native-maps-navigation/issues"
-  },
-  "scripts": {
-    "test": "jest"
-  },
-  "jest": {
-    "preset": "react-native"
-  },
-  "homepage": "https://github.com/flyandi/react-native-maps-navigation#readme",
+  "main": "index.js",
+  "name": "react-native-maps-navigation",
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
     "react-native-maps": ">=0.21.0"
   },
-  "dependencies": {
-    "geolib": "^3.0.2",
-    "prop-types": "^15.6.2",
-    "react-native-optiongroup": "^0.0.7"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flyandi/react-native-maps-navigation.git"
   },
   "rnpm": {
     "assets": [
       "./assets/fonts"
     ]
-  }
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "version": "0.0.14"
 }

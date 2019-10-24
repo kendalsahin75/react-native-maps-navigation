@@ -14,11 +14,18 @@ export default props => StyleSheet.create({
      * @maneuverView
      */
     maneuverView: {
-        padding: 15,
-        backgroundColor: props.backgroundColor ,
-        flexDirection: 'row',
-        minHeight:  120,
-        alignItems: 'center',
+      marginTop:50,
+      paddingVertical:16,
+      marginHorizontal:16,
+      backgroundColor:'rgb(72,146,255)',
+      borderRadius:6,
+      flexDirection:'row',
+      shadowColor: 'rgba(0,0,0,0.12)',
+      shadowOffset: { width: 0, height: 0 },
+      shadowOpacity: 0,
+      shadowRadius: 10,
+      elevation: 1,
+      alignItems:'center'
     },
 
     maneuverViewArrow: {

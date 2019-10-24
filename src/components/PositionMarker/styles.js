@@ -12,14 +12,14 @@ export default props => StyleSheet.create({
 
     positionMarkerText: {
         ...NavigationIconsFont,
-        fontSize: props.fontSize,
+        fontSize: 16,
         color: props.color,
     },
 
     positionMarkerArrow: {
         backgroundColor: props.backgroundColor,
-        width: props.size,
-        height: props.size,
+        width: 32,
+        height: 32,
         borderRadius: props.size,
         justifyContent: 'center',
         alignItems: 'center',
