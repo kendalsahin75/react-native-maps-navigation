@@ -24,7 +24,7 @@ export default class Simulator {
      * start
      * @param route
      */
-    start(route) {
+    start(route,speed) {
         this.pointIndex = 0;
 
         const steps = route.steps;
@@ -65,15 +65,15 @@ export default class Simulator {
         this.points = result;
         this.lastBearing = false;
 
-        this.drive();
+        this.drive(speed);
 
     }
 
-    drive()
+    drive(speed)
     {
         const point = this.points[this.pointIndex];
 
-        let speed = this.speed;
+        //let speed = speed;
 
         if(point && point.bearing) {
 
@@ -85,12 +85,12 @@ export default class Simulator {
                 // check if it's just a small bump
                 if(point.bearing > this.lastBearing - 10 && point.bearing  < this.lastBearing + 10) {
 
-                    this.instance.updateBearing(point.bearing, this.turnSpeed);
+                    this.instance.updateBearing(point.bearing, speed);
 
                 } else {
                     allowPositionUpdate = false;
-                    speed = this.turnSpeed;
-                    this.instance.updateBearing(point.bearing, this.turnSpeed);
+                    //speed = this.turnSpeed;
+                    this.instance.updateBearing(point.bearing, speed);
                 }
 
                 this.lastBearing = point.bearing;

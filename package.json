@@ -1,5 +1,5 @@
 {
-  "_from": "github:ayberkanilatsiz/react-native-maps-navigation",
+  "_from": "github:kendalsahin75/react-native-maps-navigation",
   "_id": "react-native-maps-navigation@0.0.14",
   "_inBundle": false,
   "_integrity": "",
@@ -7,20 +7,20 @@
   "_phantomChildren": {},
   "_requested": {
     "type": "git",
-    "raw": "react-native-maps-navigation@github:ayberkanilatsiz/react-native-maps-navigation",
+    "raw": "react-native-maps-navigation@github:kendalsahin75/react-native-maps-navigation",
     "name": "react-native-maps-navigation",
     "escapedName": "react-native-maps-navigation",
-    "rawSpec": "github:ayberkanilatsiz/react-native-maps-navigation",
-    "saveSpec": "github:ayberkanilatsiz/react-native-maps-navigation",
+    "rawSpec": "github:kendalsahin75/react-native-maps-navigation",
+    "saveSpec": "github:kendalsahin75/react-native-maps-navigation",
     "fetchSpec": null,
     "gitCommittish": null
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "github:ayberkanilatsiz/react-native-maps-navigation#425cb433ddea865722f0ab57577f16f40b392511",
-  "_spec": "react-native-maps-navigation@github:ayberkanilatsiz/react-native-maps-navigation",
-  "_where": "/Users/kendal/development/germanTaxi/taxi-mobile-driver",
+  "_resolved": "github:kendalsahin75/react-native-maps-navigation#6013f2fa155e0c1b6130a32d2f49d35a018d2935",
+  "_spec": "react-native-maps-navigation@github:kendalsahin75/react-native-maps-navigation",
+  "_where": "/Users/kendal/development/v3driver/taxi-mobile-driver",
   "author": {
     "name": "Andy Schwarz",
     "email": "flyandi@yahoo.com",

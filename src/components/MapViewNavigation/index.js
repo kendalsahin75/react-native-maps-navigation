@@ -11,7 +11,7 @@ import Directions from '../../modules/Directions';
 import TravelModes from '../../constants/TravelModes';
 import NavigationModes from '../../constants/NavigationModes';
 import * as Tools from '../../modules/Tools';
-//import Simulator from '../../modules/Simulator';
+import Simulator from '../../modules/Simulator';
 import Traps from '../../modules/Traps';
 import RouteMarker from '../RouteMarker';
 import RoutePolyline from '../RoutePolyline';
@@ -98,7 +98,7 @@ export default class MapViewNavigation extends Component {
       language: this.props.language
     });
 
-    //this.simulator = new Simulator(this);
+    this.simulator = new Simulator(this);
 
     this.traps = new Traps(this);
 
@@ -109,6 +109,7 @@ export default class MapViewNavigation extends Component {
       navigationMode: this.props.navigationMode,
       travelMode: TravelModes.DRIVING,
       stepIndex: false,
+      speed: 0
     };
 
     this.theme = connectTheme(this.props.theme);
@@ -143,19 +144,16 @@ export default class MapViewNavigation extends Component {
    * @param prevState
    */
   componentDidUpdate(prevProps, prevState) {
-    console.log('this.props.navigationLocation-paket => ', this.props.navigationLocation);
     if (this.props.navigationLocation != prevProps.navigationLocation) {
-      console.log('this.props.navigationLocation-paket içeri=> ', this.props.navigationLocation);
+      console.log("-----UPDATE------")
       this.setPosition(this.props.navigationLocation);
     }
-    console.log('this.props.origin => ', this.props.origin);
     if (this.props.origin && this.props.destination) {
       if (
         (prevProps.navigationMode != this.props.navigationMode) ||
         (prevProps.travelMode != this.props.travelMode) ||
         (prevProps.origin != this.props.origin || prevProps.destination != this.props.destination)
       ) {
-        console.log('this.props.origin içeri=> ', this.props.origin);
         this.updateRoute();
       }
     }
@@ -207,19 +205,41 @@ export default class MapViewNavigation extends Component {
     };
   }
 
-  /**
-   * updateBearing
-   * @param bearing
-   * @param duration
-   */
-  async updateBearing(coordinates, bearing, duration = false) {
-    // this.props.map().animateToBearing(bearing, duration || this.props.animationDuration);
-    // const camera = await this.props.map().getCamera();
+  updatePosition(coordinates,bearing, duration = 0)
+  {
     if (typeof coordinates !== "object") {
       return;
     };
-    console.log(coordinates)
+    console.log('coordinates => ', coordinates);
     const Camera = {
+      center: {
+        latitude: coordinates.latitude,
+        longitude: coordinates.longitude
+      },
+      bearing:bearing,
+      pitch: 10,
+      zoom: 17
+    }
+    console.log('Camera => ', Camera);
+    if (this.props.map() && this.props.map().setCamera) {
+      this.props.map().setCamera(Camera, {
+        duration: this.props.animationDuration
+      });
+    }
+  }
+
+
+  /*
+   * updateBearing
+   * @param bearing
+   * @param duration
+  async updateBearing(coordinates, bearing, duration = false) {
+    // this.props.map().animateToBearing(bearing, duration || this.props.animationDuration);
+    //const camera = await this.props.map().getCamera();
+    if (typeof coordinates !== "object") {
+      return;
+    };
+   const Camera = {
       center: {
         latitude: coordinates.latitude,
         longitude: coordinates.longitude
@@ -229,14 +249,15 @@ export default class MapViewNavigation extends Component {
       zoom: 17
     }
 
+    console.log('this.props.map => ', this.props.map);
     if (this.props.map() && this.props.map().setCamera) {
-      console.log('this.props.map().setCamera() => ', this.props.map().setCamera());
       this.props.map().setCamera(Camera, {
-        duration: duration || this.props.animationDuration
+        duration: this.props.animationDuration
       });
-      // this.props.map().animateToBearing(bearing, duration || this.props.animationDuration);
+      console.log('this.props.map().animateCamera(bearing, this.props.animationDuration) => ', this.props.map().animateCamera(bearing, this.props.animationDuration));
+      this.props.map().animateCamera(bearing, this.props.animationDuration);
     }
-  }
+  }*/
 
   /**
    *
@@ -279,17 +300,16 @@ export default class MapViewNavigation extends Component {
    * @param position
    */
   setPosition(position) {
-    const { latitude, longitude, heading } = position;
-
+    const { latitude, longitude, heading, speed } = position;
+    this.speed = speed;
     position.coordinate = { latitude, longitude };
-
+    console.log('position set position=> ', position);
     // process traps on setPosition
     this.traps.execute(position);
 
     // update position on map
     if (this.state.navigationMode == NavigationModes.NAVIGATION) {
-      console.log(position)
-      this.updateBearing(position, heading);
+      this.updatePosition(position,heading);
     }
 
     this.setState({ position });
@@ -410,8 +430,7 @@ export default class MapViewNavigation extends Component {
       }
       this.props.map().setCamera(c, this.props.animationDuration);
       // this.props.map().animateToViewingAngle(this.props.navigationViewingAngle, this.props.animationDuration);
-      console.log(route.origin);
-      this.updateBearing(route.origin.coordinate, route.initialBearing);
+      this.updatePosition(route.origin.coordinate,route.initialBearing);
 
       this.setState({
         navigationMode: NavigationModes.NAVIGATION,
@@ -421,7 +440,7 @@ export default class MapViewNavigation extends Component {
 
       this.props.onNavigationStarted && this.props.onNavigationStarted();
 
-      //setTimeout(() => this.simulator.start(route), this.props.animationDuration * 1.5);
+      //setTimeout(() => this.simulator.start(route,this.speed), this.props.animationDuration * 1.5);
 
       return Promise.resolve(route);
     });
@@ -546,6 +565,7 @@ export default class MapViewNavigation extends Component {
    * @returns {*[]}
    */
   render() {
+    console.log('this.state.position render => ', this.state.position);
     const result = [
       this.getRouteMarkers(this.state.route),
       this.getRoutePolylines(this.state.route),
